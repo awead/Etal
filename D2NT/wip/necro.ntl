@@ -1,0 +1,281 @@
+var NTConfig_Curse;
+var NTConfig_Skele;         
+var NTConfig_Mage;          
+var NTConfig_Golem;           
+
+function NT_LoadConfig()
+{
+	//------------------------------------------------------------------------------
+	// Boss configuration
+	//------------------------------------------------------------------------------
+	
+	//NTConfig_Script.push("NTMausoleum.ntj"); NTConfig_KillBloodRaven = true;
+	//NTConfig_Script.push("NTTristram.ntj"); NTConfig_KillRakanishu = true;
+	NTConfig_Script.push("NTPit.ntj"); NTConfig_ClearPitLevel1 = 1; // 0 : don't clear, 1 : clear path only, 2 : clear all	
+	//NTConfig_Script.push("NTCountess.ntj");	
+	//NTConfig_Script.push("NTSummoner.ntj"); NTConfig_KillFireEye = true;
+	//NTConfig_Script.push("NTPindleskin.ntj"); NTConfig_NihlathakExtension = false;
+	//NTConfig_Script.push("NTMephisto.ntj");
+	NTConfig_Script.push("NTDiablo.ntj");
+	NTConfig_Script.push("NTBaal.ntj"); NTConfig_KillBaal = false;
+	NTConfig_Script.push("NTAndariel.ntj");
+	
+	//NTConfig_Script.push("NTLowerKurast.ntj");
+	//NTConfig_Script.push("NTTombChests.ntj");
+	//NTConfig_Script.push("NTNihlathak.ntj"); NTConfig_PindleskinExtension = true;
+	//NTConfig_Script.push("NTEldritch.ntj"); NTConfig_ShenkExtension = false;
+	//NTConfig_Script.push("NTThreshSocket.ntj");
+	//NTConfig_Script.push("NTFrozenRiver.ntj"); NTConfig_ClearFrozenRiver = false;
+	//NTConfig_Script.push("NTGlacialTrail.ntj"); NTConfig_ClearGlacialTrail = true;
+	//NTConfig_Script.push("NTIcyCellar.ntj"); NTConfig_ClearIcyCellar = false;
+	
+	//NTConfig_Script.push("NTHephasto.ntj");
+	//NTConfig_Script.push("NTIzual.ntj");
+	//NTConfig_Script.push("NTTravincal.ntj");
+	//NTConfig_Script.push("NTKurastTravel.ntj");
+	//NTConfig_Script.push("NTAct3Sewers.ntj"); NTConfig_ClearA3SewersLevel1 = 1; // 0 : don't clear, 1 : clear path only, 2 : clear all
+	//NTConfig_Script.push("NTHole.ntj"); NTConfig_ClearHoleLevel1 = 1; // 0 : don't clear, 1 : clear path only, 2 : clear all	
+	//NTConfig_Script.push("NTDuriel.ntj");
+	//NTConfig_Script.push("NTAncientTunnels.ntj");
+	//NTConfig_Script.push("NTColdworm.ntj");
+	//NTConfig_Script.push("NTRadament.ntj");
+	//NTConfig_Script.push("NTTreehead.ntj");
+
+
+
+	//------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------
+	me.maxgametime = 15300;           // time in seconds, maximum game length (0 is infinite)
+	NTConfig_StartDelay = 100;	// Delay time in milliseconds to start;
+	NTConfig_AreaDelay = 100;	// Delay time in milliseconds to change area;
+	NTConfig_SnagDelay = 100;	// Delay time in milliseconds to wait before starting picking items
+
+	//------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------
+	NTConfig_SkipHealLife = 99;	// If you have more than this percent of life, you won't go to a healer
+	NTConfig_SkipHealMana = 99;	// If you have more than this percent of mana, you won't go to a healer
+	NTConfig_UseMerc = true;	// Set to true if you use a mercenary, will revive merc at a reviver npc.
+	NTConfig_ResetWeapon = true;	// Set to true to reset weapon when reviving merc
+
+	NTConfig_LifeThresh = 85;	// Drink a normal potion if under this percent of life.
+	NTConfig_LifeRejuvThresh = 40;	// Drink a rejuvenation potion if under this percent of life.
+	NTConfig_ManaThresh = 20;	// Drink a normal potion if under this percent of mana.
+	NTConfig_ManaRejuvThresh = 20;	// Drink a rejuvenation potion if under this percent of mana.
+	NTConfig_LifeChicken = 30;	// This is your chicken life percent. If you go below this life total, exit game.
+	NTConfig_ManaChicken = 0;	// This is your chicken mana percent. If you go below this mana total, exit game.
+
+	NTConfig_MercLifeThresh = 80;	// This is the threshold to use a life potion on your merc in percent.
+	NTConfig_MercRejuvThresh = 25;	// This is the threshold to use a rejuv potion on your merc in percent.
+	NTConfig_MercChicken = 0;	// This is your mercs chicken life percent. If he goes below this, exit game.
+
+	//------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------
+	NTConfig_FreeSpace = 4;		// Number of free columns. If less full columns are free stashing is set.
+
+	// The numbers correspond to your inventory. Set 0 to keep whatever is there, 1 to stash it.
+	NTConfig_Columns[0] = [1,1,1,1,0,0,0,0,0,0];
+	NTConfig_Columns[1] = [1,1,1,1,0,0,0,0,0,0];
+	NTConfig_Columns[2] = [1,1,1,1,0,0,0,0,0,0];
+	NTConfig_Columns[3] = [1,1,1,1,0,0,0,0,0,0];
+
+	NTConfig_MinGoldToStash = 100000;	// Maximum gold amount carried before going to stash
+
+	//----------------------------------------------------------------------------------------------
+	// Type of potion used in each belt column
+	// Available types : "hp" = health | "mp" = mana | "rv" = rejuv. Can use other potion types too.
+	// Keep equal types at adjacent columns. First HP then MP and then HP again is a bad choice.
+	// Keep HP and MP at the beginning of the belt (in case you want to use rejuv and other types).
+	// Rejuvenations MUST, I REPEAT MUST be at the end of the belt (last x columns).
+	// To use rejuvenations only, put "rv" in all columns.
+	//----------------------------------------------------------------------------------------------
+	NTConfig_BeltColType[0] = "hp";
+	NTConfig_BeltColType[1] = "hp";
+	NTConfig_BeltColType[2] = "rv";
+	NTConfig_BeltColType[3] = "rv";
+
+	//-----------------------------------------------------------------------------------
+	// SnagIt configuration
+	// Select one group only (normal / advance / extreme)
+	//-----------------------------------------------------------------------------------
+	//NTConfig_NIPFilePath.push("normal/normal.nip");
+	//NTConfig_NIPFilePath.push("normal/magic_rare.nip");
+	//NTConfig_NIPFilePath.push("normal/set.nip");
+        //NTConfig_NIPFilePath.push("normal/unique.nip");
+	//NTConfig_NIPFilePath.push("normal/craft.nip");
+	NTConfig_NIPFilePath.push("normal/Early.nip"); 
+
+	//NTConfig_NIPFilePath.push("advance/normal.nip");
+	//NTConfig_NIPFilePath.push("advance/magic_rare.nip");
+	//NTConfig_NIPFilePath.push("advance/set.nip");
+	//NTConfig_NIPFilePath.push("advance/unique.nip");
+	//NTConfig_NIPFilePath.push("advance/craft.nip");
+
+	//NTConfig_NIPFilePath.push("extreme/normal.nip");
+	//NTConfig_NIPFilePath.push("extreme/magic_rare.nip");
+	//NTConfig_NIPFilePath.push("extreme/set.nip");
+	//NTConfig_NIPFilePath.push("extreme/unique.nip");
+	//NTConfig_NIPFilePath.push("extreme/craft.nip");
+
+	NTConfig_SnagRange = 50;	// Radius to check for dropped items. 40 is a good number here
+
+	//------------------------------------------------------------------------------
+	// Cubing configuration
+	//------------------------------------------------------------------------------
+	NTConfig_Cubing = true;		// Enable cubing
+
+	NTConfig_CubingItem.push([NTCU_GEM, 560]);	// Flawless Amethyst
+	//NTConfig_CubingItem.push([NTCU_GEM, 565]);	// Flawless Topaz
+	//NTConfig_CubingItem.push([NTCU_GEM, 570]);	// Flawless Saphire
+	//NTConfig_CubingItem.push([NTCU_GEM, 575]);	// Flawless Emerald
+	//NTConfig_CubingItem.push([NTCU_GEM, 580]);	// Flawless Ruby
+	//NTConfig_CubingItem.push([NTCU_GEM, 585]);	// Flawless Diamond
+	//NTConfig_CubingItem.push([NTCU_GEM, 600]);	// Flawless Skull
+
+	//NTConfig_CubingItem.push([NTCU_MAGIC, 420]);	// Magic Tiara
+	//NTConfig_CubingItem.push([NTCU_MAGIC, 421]);	// Magic Diadem
+
+	//NTConfig_CubingItem.push([NTCU_MAGIC_CHARM, 603]);	// Magic Small Charm
+	//NTConfig_CubingItem.push([NTCU_MAGIC_CHARM, 605]);	// Magic Grand Charm
+
+	//NTConfig_CubingItem.push([NTCU_CRAFT_HITPOWER_GLOVES, 382]);	// Craft Heavy Bracers
+	//NTConfig_CubingItem.push([NTCU_CRAFT_HITPOWER_GLOVES, 452]);	// Craft Vambraces
+
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_HELM, 354]);		// Craft Casque
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_HELM, 424]);		// Craft Armet
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_BOOTS, 388]);	// Craft Battle Boots
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_BOOTS, 458]);	// Craft Mirrored Boots
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_GLOVES, 381]);	// Craft Sharkskin Gloves
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_GLOVES, 451]);	// Craft Vampirebone Gloves
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_BELT, 392]);		// Craft Mesh Belt
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_BELT, 462]);		// Craft Mithril Coil
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_AMULET, 520]);	// Craft Amulet
+	//NTConfig_CubingItem.push([NTCU_CRAFT_BLOOD_RING, 522]);		// Craft Ring
+
+	//NTConfig_CubingItem.push([NTCU_CRAFT_CASTER_AMULET, 520]);	// Craft Amulet
+
+	//NTConfig_CubingItem.push([NTCU_CRAFT_SAFETY_SHIELD, 447]);	// Craft Monarch
+	//NTConfig_CubingItem.push([NTCU_CRAFT_SAFETY_AMULET, 520]);	// Craft Amulet
+
+	//NTConfig_CubingItem.push([NTCU_RUNE_THUL, 562]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_AMN, 557]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_SOL, 567]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_SHAEL, 577]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_DOL, 572]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_HEL, 582]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_IO, 563]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_LUM, 558]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_KO, 568]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_FAL, 578]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_LEM, 573]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_PUL, 583]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_UM, 564]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_MAL, 559]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_IST, 569]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_GUL, 579]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_VEX, 574]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_OHM, 584]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_LO, 565]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_SUR, 560]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_BER, 570]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_JAH, 580]);
+	//NTConfig_CubingItem.push([NTCU_RUNE_CHAM, 575]);
+
+	//***** Include the following, Primary item must be setted in item_configs folder *****
+
+	//NTConfig_CubingItem.push([NTCU_SOCKET_BODYARMOR, 442]);	// Socket Sacred Armor
+
+	//NTConfig_CubingItem.push([NTCU_SOCKET_WEAPON, 255]);	// Socket Thresher
+	//NTConfig_CubingItem.push([NTCU_SOCKET_WEAPON, 256]);	// Socket Cryptic Axe
+	//NTConfig_CubingItem.push([NTCU_SOCKET_WEAPON, 257]);	// Socket Great Poleaxe
+	//NTConfig_CubingItem.push([NTCU_SOCKET_WEAPON, 258]);	// Socket Giant Thresher
+
+	//NTConfig_CubingItem.push([NTCU_UPGRADE_E_UNIQUE_WEAPON, 295]);	// Titan's Revenge : Exceptional -> Elite
+
+	//NTConfig_CubingItem.push([NTCU_UPGRADE_N_UNIQUE_ARMOR, 337]);	// Magefist : Normal -> Exceptional
+	//NTConfig_CubingItem.push([NTCU_UPGRADE_E_UNIQUE_ARMOR, 360]);	// Skin of the Vipermagi : Exceptional -> Elite
+	//NTConfig_CubingItem.push([NTCU_UPGRADE_E_UNIQUE_ARMOR, 383]);	// Magefist or Lava Gout : Exceptional -> Elite
+	//NTConfig_CubingItem.push([NTCU_UPGRADE_E_UNIQUE_ARMOR, 389]);	// Gore Rider : Exceptional -> Elite
+	//NTConfig_CubingItem.push([NTCU_UPGRADE_E_UNIQUE_ARMOR, 477]);	// Arreat's Face : Exceptional -> Elite
+	//NTConfig_CubingItem.push([NTCU_UPGRADE_E_UNIQUE_ARMOR, 481]);	// Herald Of Zakarum : Exceptional -> Elite
+
+	//------------------------------------------------------------------------------
+	// Gamble configuration
+	// To specify what items to gamble, adjust the array with the desired item codes
+	//------------------------------------------------------------------------------
+	NTConfig_Gamble = true;		// Enable gambling
+	NTConfig_GambleStartGold = 2300000;	// Gold amount to start the gambling
+	NTConfig_GambleStopGold = 2000000;	// Gold amount to stop the gambling
+
+	//NTConfig_GambleItem.push(520);	// Amulets
+	//NTConfig_GambleItem.push(522);	// Rings
+	NTConfig_GambleItem.push(418);	// Circlets
+	NTConfig_GambleItem.push(419);	// Coronets
+	//NTConfig_GambleItem.push(334);	// Leather Gloves
+	//NTConfig_GambleItem.push(335);	// Heavy Gloves
+	//NTConfig_GambleItem.push(336);	// Chain Gloves
+	//NTConfig_GambleItem.push(337);	// Light Gauntlets
+	//NTConfig_GambleItem.push(338);	// Gauntlets
+
+	//------------------------------------------------------------------------------
+	// General configuration
+	//------------------------------------------------------------------------------
+	NTConfig_PublicMode = false;
+	NTConfig_CheckCloneDiablo = false;	// Set to true if you want to wait in game after notifying "Diablo Walks the Earth" msg.
+	NTConfig_OpenChest = true;			// Set to true to open chest
+	me.quitonhostile = false;
+
+	//------------------------------------------------------------------------------
+	// Attack configuration
+	//------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------
+	// Curses / Curse States & Golems
+	//------------------------------------------------------------------------------
+	// Amplify Damage = 66 
+	// 
+        // Dim Vision     = 71 
+	//	
+        // Weaken         = 72 
+	//	
+        // Iron maiden    = 76 
+	//
+	// Terror 	  = 77 
+	//	
+        // Confuse 	  = 81 
+	//	
+ 	// Life Tap       = 82 
+	//	
+ 	// Attract        = 86 
+	//	
+ 	// Decrepify      = 87 
+	//	
+ 	// Lower Resist   = 91
+	// 
+	// No Golem / You already have an Iron Golem out = 0
+	//	
+	// Clay Golem	  = 1
+	// 
+	// Blood Golem    = 2
+	// 
+	// Fire Golem     = 3
+	//-----------------------------------------------------------------------------	
+	
+	NTConfig_Curse = 87;		// Place curse to cast (above)
+	NTConfig_Skele = 15;            // Number of Skeletons you can summon
+	NTConfig_Mage = 15;             // Number of Mages you can summon
+	NTConfig_Golem = 1;           // The golem you want to use (above)
+	NTConfig_AttackSkill[0] = 74;	// First skill. Set to 0 if you won't
+	NTConfig_AttackSkill[1] = 84;	// Primary skill to boss.
+	NTConfig_AttackSkill[2] = 0;	// Primary untimed skill to boss. Set to 0 if you won't
+	NTConfig_AttackSkill[3] = 84;	// Primary skill to others.
+	NTConfig_AttackSkill[4] = 0;	// Primary untimed skill to others. Set to 0 if you won't
+	NTConfig_AttackSkill[5] = 84;	// Secondary skill in case monster is immune to primary skill. Set to 0 if you won't
+	NTConfig_AttackSkill[6] = 0;	// Secondary untimed skill. Set to 0 if you won't
+	NTConfig_ClearPosition = true;	// Set to true if you want to clear area after killing boss.
+
+	// Check self safe in field (NOT in town). Set to 0 if you won't
+	// 0x01 : Potion, 0x02 : Poison, 0x04 : Amplify Damage, 0x08 : Weaken, 0x10 : Iron Maiden, 0x20 : Decrepify, 0x40 : Lower Resist
+	NTConfig_CheckSelfSafe = 0x40;
+	// Check merc's safe in field (NOT in town). Set to 0 if you won't
+	// 0x01 : Death, 0x02 : Poison, 0x04 : Amplify Damage, 0x08 : Weaken, 0x10 : Iron Maiden, 0x20 : Decrepify, 0x40 : Lower Resist
+	NTConfig_CheckMercSafe = 0x40;
+}
