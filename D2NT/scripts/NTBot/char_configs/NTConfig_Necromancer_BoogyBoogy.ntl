@@ -431,8 +431,8 @@ function NT_LoadConfig()
 	//----------------------------------------------------------------------------------------------
 	NTConfig_BeltColType[0] = "hp";
 	NTConfig_BeltColType[1] = "hp";
-	NTConfig_BeltColType[2] = "mp";
-	NTConfig_BeltColType[3] = "rv";
+	NTConfig_BeltColType[2] = "hp";
+	NTConfig_BeltColType[3] = "mp";
 
 	//-----------------------------------------------------------------------------------
 	// Pickit (SnagIt) Configuration
@@ -794,13 +794,13 @@ function NT_LoadConfig()
 	// 		* Change the -1's to the corresponding #'s found in /D2NT/sdk/skills.txt
 	// 		* As of Jan 17th: -1 = Disabled, 0 = Normal Attack.
 	//------------------------------------------------------------------------------
-	NTConfig_AttackSkill[0] = -1;	// First skill. Set to -1 if you won't
-	NTConfig_AttackSkill[1] = -1;	// Primary skill to boss.
-	NTConfig_AttackSkill[2] = -1;	// Primary untimed skill to boss. Set to -1 if you won't
-	NTConfig_AttackSkill[3] = -1;	// Primary skill to others.
-	NTConfig_AttackSkill[4] = -1;	// Primary untimed skill to others. Set to -1 if you won't
-	NTConfig_AttackSkill[5] = -1;	// Secondary skill in case monster is immune to primary skill. Set to -1 if you won't
-	NTConfig_AttackSkill[6] = -1;	// Secondary untimed skill. Set to -1 if you won't
+	NTConfig_AttackSkill[0] = 70;	// First skill. Set to -1 if you won't
+	NTConfig_AttackSkill[1] = 70;	// Primary skill to boss.
+	NTConfig_AttackSkill[2] = 66;	// Primary untimed skill to boss. Set to -1 if you won't
+	NTConfig_AttackSkill[3] = 70;	// Primary skill to others.
+	NTConfig_AttackSkill[4] = 66;	// Primary untimed skill to others. Set to -1 if you won't
+	NTConfig_AttackSkill[5] = 70;	// Secondary skill in case monster is immune to primary skill. Set to -1 if you won't
+	NTConfig_AttackSkill[6] = 66;	// Secondary untimed skill. Set to -1 if you won't
 
 	NTConfig_DiaSpam = 0;								// Skill to spam before Diablo Spawns
 
@@ -841,8 +841,8 @@ function NT_LoadConfig()
 	// Class Specific Settings
 	//------------------------------------------------------------------------------
 
-	NTConfig_Curse[0] = 91; 				// Curse to boss. Set to 0 if you won't
-	NTConfig_Curse[1] = 91; 				// Curse to others. Set to 0 if you won't
+	NTConfig_Curse[0] = 66; 				// Curse to boss. Set to 0 if you won't
+	NTConfig_Curse[1] = 66; 				// Curse to others. Set to 0 if you won't
 
 	NTConfig_TeleStomp = true;				// Teleport onto a boss or immune monster.
 	NTConfig_ActiveSummon = false;			// Summon between attacks.
