@@ -17,7 +17,7 @@ function NT_LoadConfig()
 	//
 	// -----------------------------------------------------------------------------------------------------
 
-	NTConfig_Script.push("ConfigCheck.ntj"); 			// This must be commented out & serves to prevent unconfigured characters from running.
+	//NTConfig_Script.push("ConfigCheck.ntj"); 			// This must be commented out & serves to prevent unconfigured characters from running.
 
 	//------------------------------------------------------------------------------>>
 	// Etal Clone Hunter Options.
